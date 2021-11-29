@@ -26,7 +26,7 @@ def main():
 
     ## This will cause a key error
     ## toast01 is not a key
-    ##print(hostipdict['toast01'])
+    ##  print(hostipdict['toast01'])
 
 if __name__ == "__main__":
     main()

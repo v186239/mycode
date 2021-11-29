@@ -45,3 +45,6 @@ http://api.open-notify.org/astros.json
 
 https://www.w3schools.com/python/ref_requests_response.asp
 
+Game code wget
+wget https://raw.githubusercontent.com/csfeeser/Python/master/rpg/rpg_original.py
+
