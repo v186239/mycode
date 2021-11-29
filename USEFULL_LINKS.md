@@ -48,3 +48,8 @@ https://www.w3schools.com/python/ref_requests_response.asp
 Game code wget
 wget https://raw.githubusercontent.com/csfeeser/Python/master/rpg/rpg_original.py
 
+CHROME JSON Formatter EXTENSION
+https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafapmmgkkhgoa?hl=en
+
+HTTP STATUS DOGS
+https://httpstatusdogs.com/
