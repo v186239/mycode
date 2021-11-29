@@ -37,3 +37,11 @@ ctrl b (hands off keyboard) [
 CLOSE A PANE:
 type exit
 
+APIs 
+Pokemon API https://pokeapi.co/
+
+Astronauts in Space
+http://api.open-notify.org/astros.json
+
+https://www.w3schools.com/python/ref_requests_response.asp
+
