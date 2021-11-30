@@ -66,3 +66,6 @@ http://api.open-notify.org/iss-now.json
 NASA API
 https://api.nasa.gov/
 
+Marvel Comics API
+https://developer.marvel.com/
+
