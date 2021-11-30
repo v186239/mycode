@@ -53,3 +53,10 @@ https://chrome.google.com/webstore/detail/json-formatter/bcjindcccaagfpapjjmafap
 
 HTTP STATUS DOGS
 https://httpstatusdogs.com/
+
+# A list of possible errors is as follows, or checked out at the following website
+https://docs.python.org/3/library/exceptions.html
+
+API of ICE and FIRE
+https://anapioficeandfire.com/
+
