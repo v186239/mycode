@@ -60,3 +60,6 @@ https://docs.python.org/3/library/exceptions.html
 API of ICE and FIRE
 https://anapioficeandfire.com/
 
+International Space Station location API
+http://api.open-notify.org/iss-now.json
+
