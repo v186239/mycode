@@ -71,3 +71,15 @@ https://api.nasa.gov/
 Marvel Comics API
 https://developer.marvel.com/
 
+MatplotLib
+https://matplotlib.org/stable/gallery/index.html
+
+pandas.json_normalize
+https://pandas.pydata.org/pandas-docs/version/1.2.0/reference/api/pandas.json_normalize.html
+
+Movies Data file
+https://static.alta3.com/files/movies.xls
+
+API ICEANDFIRE
+https://anapioficeandfire.com/api/characters
+
