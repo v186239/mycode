@@ -1,4 +1,6 @@
 # Using links - Python3, VIM, TMUX Cheat Sheet -  for the APIs with Python Course
+Instructor Chad's GITHUB page
+https://github.com/csfeeser/Python/tree/master/pyapi
 
 Python3 Cheat Sheet
 https://static1.squarespace.com/static/5df3d8c5d2be5962e4f87890/t/5e571dddd241b63a4237e0bf/1582767581265/python3.pdf
