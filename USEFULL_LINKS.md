@@ -91,3 +91,5 @@ https://editor.swagger.io/?docExpansion=
 
 SWAGGER DOC
 https://stackoverflow.com/questions/62066474/python-flask-automatically-generated-swagger-openapi-3-0
+https://github.com/swagger-api
+
