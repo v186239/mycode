@@ -83,3 +83,11 @@ https://static.alta3.com/files/movies.xls
 API ICEANDFIRE
 https://anapioficeandfire.com/api/characters
 
+PET SWAGGER API Example
+https://petstore.swagger.io/
+
+SWAGGER EDITOR
+https://editor.swagger.io/?docExpansion=
+
+SWAGGER DOC
+https://stackoverflow.com/questions/62066474/python-flask-automatically-generated-swagger-openapi-3-0
