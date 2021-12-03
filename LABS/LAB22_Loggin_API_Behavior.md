@@ -1,4 +1,4 @@
-Logging API Behavior
+# Logging API Behavior
 Lab Objective
 The objective of this lab is to learn to explore JSON responses from APIs, as well as create scripts that log their behavior. For this lab, use the following resource:
 

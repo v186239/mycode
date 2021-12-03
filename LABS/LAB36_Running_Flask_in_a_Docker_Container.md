@@ -1,4 +1,4 @@
-Running Flask in a Docker Container
+# Running Flask in a Docker Container
 Lab Objective
 The objective of this lab is to give students an idea of how to run Flask application within a Docker container. Think of containers as light-weight virtualization (as opposed to a virtual machine).
 

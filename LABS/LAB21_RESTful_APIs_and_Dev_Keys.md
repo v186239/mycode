@@ -1,4 +1,4 @@
-RESTful APIs and Dev Keys
+# RESTful APIs and Dev Keys
 Lab Objective
 The objective of this lab is to explore a vast data set as provided by the Marvel API. Marvel requires a developer's account to access their data but creating an account only requires a valid email address.
 

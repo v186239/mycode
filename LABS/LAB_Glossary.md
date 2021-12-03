@@ -1,4 +1,4 @@
-Glossary
+# Glossary
 Attribute - Values associated with an individual object. Attributes are accessed using the 'dot syntax': a.x means fetch the x attribute from the 'a' object.
 BDFL - Acronym for "Benevolent Dictator For Life" - a.k.a. Guido van Rossum, Python's primary creator, figurehead and decision-maker.
 EAFP - Acronym for the saying it's "Easier to Ask for Forgiveness than Permission". This common Python coding style assumes the existence of valid keys or attributes and catches exceptions if the assumption proves false. This clean and fast style is characterized by the presence of many try and except statements. The technique contrasts with the LBYL style that is common in many other languages such as C.

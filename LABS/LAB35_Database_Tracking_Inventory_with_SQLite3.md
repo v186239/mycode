@@ -1,4 +1,4 @@
-Tracking Inventory with sqlite
+# Tracking Inventory with sqlite
 Lab Objective
 We're going to create two applications: a flask API that manipulates a SQL database, as well as a client to speak to our API. Our application is going to track a collection of student information, but could easily be manipulated to track any type of collection.
 

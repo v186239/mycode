@@ -1,4 +1,4 @@
-API Design Best Practice
+# API Design Best Practice
 Most modern APIs are designed to use HTTP as the protocol, so it is worth going over the most common HTTP methods that we can use.
 
 CRUD	Method	Description

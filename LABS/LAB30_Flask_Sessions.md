@@ -1,4 +1,4 @@
-Flask Sessions
+# Flask Sessions
 Lab Objective
 The objective of this lab is to explore Flask's ability to leverage sessions. A Flask Session is yet another way to store user-specific data between requests. This is similar to cookies, but with a different intended case use.
 

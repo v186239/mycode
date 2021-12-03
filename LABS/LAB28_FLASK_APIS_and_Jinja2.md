@@ -1,4 +1,4 @@
-Flask APIs and Jinja2
+# Flask APIs and Jinja2
 Lab Objective
 The objective of this lab is to continue to explore building APIs with Flask. In this example, we'll leverage the use of a Jinja2 template. Our API will first render an HTML template and return that in the HTTP request. This is an 'older' method of transmitting data. Today it's much more popular just to return JSON. The client can then parse out that JSON and display the data.
 

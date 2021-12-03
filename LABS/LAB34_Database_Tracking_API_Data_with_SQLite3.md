@@ -1,226 +1,187 @@
-Learning sqlite3
+# Tracking API Data with sqlite3
 Lab Objective
-SQLite is a C library that provides a lightweight disk-based database that doesn’t require a separate server process and allows accessing the database using a nonstandard variant of the SQL query language. Some applications can use SQLite for internal data storage. It’s also possible to prototype an application using SQLite and then port the code to a larger database such as PostgreSQL or Oracle.
-
-The sqlite3 module was written by Gerhard Häring. It provides a SQL interface compliant with the DB-API 2.0 specification described by PEP 249.
-
-The library official documentation is available here: https://docs.python.org/3/library/sqlite3.html
+The objective of this lab is to create a practical application that can harness data from an API and then save it within a SQL database for long term storage. This application is written to look up data from the Open Movies DataBase (OMDB) API, but could easily be modified to look up data from other API sources.
 
 Procedure
-Create a new directory to work in, ~/mycode/sqldb/
+In this lab, we'll use the Open Movie Data Base API to grab some metadata about movies to write into our local SQL database. Create a new directory to work in, ~/mycode/apisqlite/
 
-student@bchd:~$ mkdir /home/student/mycode/sqldb
+student@bchd:~$ mkdir /home/student/mycode/apisqlite
 
 Move into your new directory.
 
-student@bchd:~$ cd /home/student/mycode/sqldb
+student@bchd:~$ cd /home/student/mycode/apisqlite
 
-Create a new script, database01.py. This script will create a database called test.db.
+To have success with this lab, you'll need to go to https://www.omdbapi.com/apikey.aspx and sign up for an API key. Be sure to only sign up for a FREE account.
 
-student@bchd:~/mycode/sqldb$ vim database01.py
+You'll need to confirm your API key via an email. Click the link at the bottom of the email to confirm your key.
 
-Following Python code shows how to connect to an existing database. If the database does not exist, then it will be created and finally a database object will be returned. Copy and paste the following into your script.
+Create a file to store your key in.
 
+student@bchd:~/mycode/apisqlite$ vim ~/omdb.key
 
-#!/usr/bin/python3
+Copy your key out of your email, and paste it into this file. Your key is only 8 characters long, and should be at the top of the email itself. When you paste it into this file, be sure you didn't include any extra lines or whitespaces.
 
-import sqlite3
-conn = sqlite3.connect('test.db')
-print("Opened database successfully")
 Save and exit with :wq
 
-Run your script.
+Create a new python script.
 
-student@bchd:~/mycode/sqldb$ python3 database01.py
+student@bchd:~/mycode/apisqlite$ vim apisqlite01.py
 
-Create a new script, database02.py. This script will create a table called company within our database.
-
-student@bchd:~/mycode/sqldb$ vim database02.py
-
-Copy and paste the following into your script.
+Copy and paste the following into your new script:
 
 
 #!/usr/bin/env python3
+""" Author: RZFeeser || Alta3 Research
+Gather data returned by various APIs published on OMDB, and cache in a local SQLite DB
+"""
 
+import json
 import sqlite3
-conn = sqlite3.connect('test.db')
-print("Opened database successfully")
-conn.execute('''CREATE TABLE COMPANY
- (ID INT PRIMARY KEY     NOT NULL,
- NAME           TEXT    NOT NULL,
- AGE            INT     NOT NULL,
- ADDRESS        CHAR(50),
- SALARY         REAL);''')
-print("Table created successfully")
-conn.close()
+import requests
+
+# Define the base URL
+OMDBURL = "http://www.omdbapi.com/?"
+
+# search for all movies containing string
+def movielookup(mykey, searchstring):
+    """Interactions with OMDB API
+       mykey = omdb api key
+       searchstring = string to search for"""
+    try:
+        # begin constructing API
+        api = f"{OMDBURL}apikey={mykey}&s={searchstring}"
+
+        ## open URL to return 200 response
+        resp = requests.get(api)
+        ## read the file-like object decode JSON to Python data structure
+        return resp.json()
+    except:
+        return False
+
+def trackmeplease(datatotrack):
+    conn = sqlite3.connect('mymovie.db')
+    try:
+        conn.execute('''CREATE TABLE IF NOT EXISTS MOVIES (TITLE TEXT PRIMARY KEY NOT NULL, YEAR INT  NOT NULL);''')
+
+        # loop through the list of movies that was passed in
+        for data in datatotrack:
+            # in the line below, the ? are examples of "bind vars"
+            # this is best practice, and prevents sql injection attacks
+            # never ever use f-strings or concatenate (+) to build your executions
+            conn.execute("INSERT INTO MOVIES (TITLE,YEAR) VALUES (?,?)",(data.get("Title"), data.get("Year")))
+            conn.commit()
+
+        print("Database operation done")
+        conn.close()
+        return True
+    except:
+        return False
+
+# Read in API key for OMDB
+def harvestkey():
+    with open("/home/student/omdb.key") as apikeyfile:
+        return apikeyfile.read().rstrip("\n") # grab the api key out of omdb.key
+
+def printlocaldb():
+    pass
+    #cursor = conn.execute("SELECT * from MOVIES")
+    #for row in cursor:
+    #    print("MOVIE = ", row[0])
+    #    print("YEAR = ", row[1])
+
+
+def main():
+
+    # read the API key out of a file in the home directory
+    mykey = harvestkey()
+
+    # enter a loop condition with menu prompting
+    while True:
+        # initialize answer
+        answer = ""
+        while answer == "":
+            print("""\n**** Welcome to the OMDB Movie Client and DB ****
+            ** Returned data will be written into the local database **
+            1) Search for All Movies Containing String
+            2) Search for Movies Containing String, and by Type
+            99) Exit""")
+
+            answer = input("> ") # collect an answer for testing
+
+        # testing the answer
+        if answer in ["1", "2"]:
+            # All searches require a string to include in the search
+            searchstring = input("Search all movies in the OMDB. Enter search string: ")
+
+            if answer == "1":
+                resp = movielookup(mykey, searchstring)
+            elif answer == "2":
+                print("\nSearch by type coming soon!\n") # maybe you can write this code!
+                continue                                 # restart the while loop
+            if resp:
+                # display the results
+                resp = resp.get("Search")
+                print(resp)
+                # write the results into the database
+                trackmeplease(resp)
+            else:
+                print("That search did not return any results.")
+
+        # user wants to exit
+        elif answer == "99":
+            print("See you next time!")
+            break
+
+if __name__ == "__main__":
+    main()
 Save and exit with :wq
 
-Run your script.
+Run your code.
 
-student@bchd:~/mycode/sqldb$ python3 database02.py
+student@bchd:~/mycode/apisqlite$ python3 apisqlite01.py
 
-Run your script a second time... this time it will fail
+Try running the script a few times. Search for a few different movies.
 
-student@bchd:~/mycode/sqldb$ python3 database02.py
+Ensure the sqlite3 client is installed with apt
 
-The script failed because your table already exists! Create a new script that will not have this issue.
+student@bchd:~/mycode/apisqlite$ sudo apt install sqlite3
 
-student@bchd:~/mycode/sqldb$ vim database02v2.py
+Connect to the SQL database client. Information on the client can be found here: https://sqlite.org/cli.html Note: If you get stuck in this client, press CTRL + D
 
-Rather than try to handle the error with Python, we can improve the way we create our table in sqlite. By changing the language to CREATE TABLE IF NOT EXISTS COMPANY, we can prevent the error from ever occurring. Create the following improved script.
+student@bchd:~/mycode/apisqlite$ sqlite3
 
+Open your database file, mymovie.db
 
-#!/usr/bin/env python3
+sqlite> .open mymovie.db
 
-import sqlite3
-conn = sqlite3.connect('test.db')
-print("Opened database successfully")
-conn.execute('''CREATE TABLE IF NOT EXISTS COMPANY
- (ID INT PRIMARY KEY     NOT NULL,
- NAME           TEXT    NOT NULL,
- AGE            INT     NOT NULL,
- ADDRESS        CHAR(50),
- SALARY         REAL);''')
-print("Table created successfully")
-conn.close()
-Save and exit with :wq
+Get the tables within mymovie.db
 
-Run your new script. It should no longer cause an error.
+sqlite> .tables
 
-student@bchd:~/mycode/sqldb$ python3 database02v2.py
+Select all of the data in the table, and display it on the screen.
 
-Run your script a second time, just to make sure we no longer are throwing errors.
+sqlite> .dump
 
-student@bchd:~/mycode/sqldb$ python3 database02v2.py
+Exit the SQL database client.
 
-Write a script that will place some data into our database. Create database03.py.
+sqlite> .quit
 
-student@bchd:~/mycode/sqldb$ vim database03.py
+CUSTOMIZATION 01 - After reviewing the API usage on https://www.omdbapi.com/. Add an "option 2" that allows the user to limit their search by "type".
 
-Copy and paste the following into your script.
+CUSTOMIZATION 02 - After reviewing the API usage on https://www.omdbapi.com/. Add an "option 3" that allows the user to limit their search by "year of release".
 
+CUSTOMIZATION 03 - After reviewing the API usage on https://www.omdbapi.com/. Add an "option 4" that allows the user to limit their search by "type" and "year of release".
 
-#!/usr/bin/env python3
+*CUSTOMIZATION SOLUTION 01 to 03 available @ https://static.alta3.com/courses/pyapi/apisqlite02.py
 
-import sqlite3
-conn = sqlite3.connect('test.db')
-print("Opened database successfully")
+CODE CUSTOMIZATION 04 - Add an "option 5" that displays the contents of the LOCAL database.
 
-conn.execute("INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) VALUES (1, 'Paul', 32, 'California', 20000.00 )")
-
-conn.execute("INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) VALUES (2, 'Allen', 25, 'Texas', 15000.00 )")
-
-conn.execute("INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) VALUES (3, 'Teddy', 23, 'Norway', 20000.00 )")
-
-conn.execute("INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY) VALUES (4, 'Mark', 25, 'Rich-Mond ', 65000.00 )")
-
-conn.commit()
-print("Records created successfully")
-conn.close()
-Save and exit with :wq
-
-Run your script.
-
-student@bchd:~/mycode/sqldb$ python3 database03.py
-
-Create a new script, database04.py. This script will select some of our data from the database and print it out.
-
-student@bchd:~/mycode/sqldb$ vim database04.py
-
-Copy and paste the following into your script.
-
-
-#!/usr/bin/env python3
-
-import sqlite3
-conn = sqlite3.connect('test.db')
-print("Opened database successfully")
-cursor = conn.execute("SELECT id, name, address, salary from COMPANY")
-for row in cursor:
-    print("ID = ", row[0])
-    print("NAME = ", row[1])
-    print("ADDRESS = ", row[2])
-    print("SALARY = ", row[3], "\n")
-
-print("Operation done successfully")
-conn.close()
-Save and exit with :wq
-
-Run your script.
-
-student@bchd:~/mycode/sqldb$ python3 database04.py
-
-Create a new script, database05.py. This script will update some of our data from the database and print it out.
-
-student@bchd:~/mycode/sqldb$ vim database05.py
-
-Copy and paste the following into your script.
-
-
-#!/usr/bin/env python3
-
-import sqlite3
-
-conn = sqlite3.connect('test.db')
-print("Opened database successfully")
-
-conn.execute("UPDATE COMPANY set SALARY = 25000.00 where ID = 1")
-conn.commit()
-print("Total number of rows updated :", conn.total_changes)
-
-cursor = conn.execute("SELECT id, name, address, salary from COMPANY")
-for row in cursor:
-    print("ID = ", row[0])
-    print("NAME = ", row[1])
-    print("ADDRESS = ", row[2])
-    print("SALARY = ", row[3], "\n")
-
-print("Operation done successfully")
-conn.close()
-Save and exit with :wq
-
-Run your script.
-
-student@bchd:~/mycode/sqldb$ python3 database05.py
-
-Create a new script, database06.py. This script will delete some of our data from the database and print out the modified database.
-
-student@bchd:~/mycode/sqldb$ vim database06.py
-
-Copy and paste the following into your script.
-
-
-#!/usr/bin/env python3
-
-import sqlite3
-
-conn = sqlite3.connect('test.db')
-print("Opened database successfully")
-
-conn.execute("DELETE from COMPANY where ID = 2;")
-conn.commit()
-print("Total number of rows deleted :", conn.total_changes)
-
-cursor = conn.execute("SELECT id, name, address, salary from COMPANY")
-for row in cursor:
-    print("ID = ", row[0])
-    print("NAME = ", row[1])
-    print("ADDRESS = ", row[2])
-    print("SALARY = ", row[3], "\n")
-
-print("Operation done successfully")
-conn.close()
-Save and exit with :wq
-
-Run your script.
-
-student@bchd:~/mycode/sqldb$ python3 database06.py
-
-Be sure to check up on Python sqlite3 module's official documentation: https://docs.python.org/3/library/sqlite3.html
+CODE CUSTOMIZATION 05 - Replace the CLI User Interface with a User Interface provided by Flask. All of the same "options" should be available via HTTP GET's to your local Flask server.
 
 If you're tracking your code in GitHub, issue the following commands:
 
 cd ~/mycode
 git add *
-git commit -m "sql operations and python3"
+git commit -m "Learning to cache data locally pulled from APIs"
 git push origin main
+

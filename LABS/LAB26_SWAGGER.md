@@ -1,4 +1,4 @@
-Swagger
+# Swagger
 Appropriate API architecting is essential to designing an API that will be easily usable, quickly adopted, and resilient against future changes.
 
 API Design Best Practice

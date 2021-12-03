@@ -1,4 +1,4 @@
-Started with Django
+# Started with Django
 Lab Objective
 The objective of this lab is to explore another web-framework, Django. Per the Django Project homepage, "Django is a high-level Python Web framework that encourages rapid development and clean, pragmatic design. Built by experienced developers, it takes care of much of the hassle of Web development, so you can focus on writing your app."
 

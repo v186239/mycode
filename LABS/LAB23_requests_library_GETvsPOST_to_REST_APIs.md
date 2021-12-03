@@ -1,4 +1,4 @@
-requests library - GET vs POST to REST APIs
+# requests library - GET vs POST to REST APIs
 Lab Objective
 The objective of this lab is to learn to learn the difference between a GET and POST request, and how they might be expected to interact different with APIs. The default HTTP behavior of browsers (and most HTTP applications) is to send a GET. GETs require any information being 'passed' to the API to be done so within the URL. This is done via key=value pairs found after a ? and delimited by & for example:
 www.example.com/search?subject=apis&date=recent

@@ -1,4 +1,4 @@
-Flask APIs and Cookies
+# Flask APIs and Cookies
 Lab Objective
 The objective of this lab is to explore Flask APIs and interacting with cookies. A cookie is stored on a client’s computer in the form of a text file. Its purpose is to remember and track data pertaining to a client’s usage for better visitor experience and site statistics.
 

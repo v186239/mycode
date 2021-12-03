@@ -1,4 +1,4 @@
-API Design with Python - Alta3 Research Certification Project
+# API Design with Python - Alta3 Research Certification Project
 Lab Objective
 The objective of this lab is to offer students an opportunity to obtain a Python and RESTful API Certification from Alta3 Research. This certification should work as proof of basic proficiency of Python and RESTful APIs. To earn a certificate, complete the following tasks. Code will be graded on a pass / fail basis within 48 hours of the end of class.
 

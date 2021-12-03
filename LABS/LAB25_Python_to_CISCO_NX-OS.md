@@ -1,4 +1,4 @@
-Python to Cisco NX-OS
+# Python to Cisco NX-OS
 Lab Objective
 The objective of this lab is to demonstrate Python connectivity to a Cisco NX-OS platform, specifically one running the Cisco Nexus 9k software (switch). This lab is comprised of two main components; the first is exposing the API on the device, the second is writing Python code to interact with the Cisco API itself.
 Cisco makes writing code for their devices easy via their NX-API sandbox. This is available for users by navigating to management IP of the NX-OS platform after enabling the NX-API via ssh. THIS LAB REQUIRES INSTALLING CISCO VPN CLIENT. This lab is READ-ONLY if you do not have sufficient privileges to install software.

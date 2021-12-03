@@ -1,4 +1,4 @@
-requests library - RESTful GET and JSON parsing
+# requests library - RESTful GET and JSON parsing
 Lab Objective
 The objective of this lab is to learn to learn to parse JSON responses. This is a critical skill that some students need additional help with. To that end, we'll use a highly available, ever-evolving, set of data from none other than the creators of Pok?mon. No need to admit if you grew up watching the show, collecting cards, or playing the video games! Also, no need to know anything about Pok?mon to appreciate this lab. At the end of the day, it is all about parsing JSON responses. It just so happens, https://pokeapi.co/ makes a very large open data-set available to us!
 

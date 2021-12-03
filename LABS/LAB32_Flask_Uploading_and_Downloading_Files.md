@@ -1,4 +1,4 @@
-Flask Redirection, Errors, and API Limiting
+# Flask Redirection, Errors, and API Limiting
 Lab Objective
 The objective of this lab is to explore redirection, errors and API limiting. Flask class has a redirect() function. When called, it returns a response object and redirects the user to another target location with specified status code.
 

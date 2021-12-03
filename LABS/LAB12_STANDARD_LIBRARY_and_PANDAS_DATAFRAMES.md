@@ -1,4 +1,4 @@
-CSV data - Standard Library and pandas dataframes
+# CSV data - Standard Library and pandas dataframes
 Lab Objective
 The objective of this lab is to work with CSV data within Python using both the standard library solution import csv, as well as a popular 3rd party solution, import pandas. Pandas is the best abstraction available, but not all students will find themselves in a position to install it (highly secure environments sometimes limit 3rd party installs).
 

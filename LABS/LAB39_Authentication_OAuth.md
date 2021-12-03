@@ -1,4 +1,4 @@
-OAuth
+# OAuth
 Lab Objective
 The objective of this lab is to design an API that is able to request and use an OAuth token as its auth method for performing specific actions. OAuth is an Authorization Framework version 2.0 (current). It enables third-party applications to obtain limited access to an HTTP service, such as a website. This is most typically done via an End User approving an interaction between the HTTP service and the third-party application.
 

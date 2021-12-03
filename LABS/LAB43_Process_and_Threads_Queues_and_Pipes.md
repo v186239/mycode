@@ -1,4 +1,4 @@
-Queues And Pipes
+# Queues And Pipes
 Objective
 In this lab we are going to be working with two separate process. We want them to be friends and work together to accomplish the task that we have set out for them. This means that they need to be able to communicate somehow.
 

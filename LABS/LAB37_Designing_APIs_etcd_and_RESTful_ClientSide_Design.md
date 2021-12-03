@@ -1,4 +1,4 @@
-etcd and RESTful Client-side Design
+# etcd and RESTful Client-side Design
 Lab Objective
 Our objective is to explore RESTful API interfaces with Python. REST stands for Representational State Transfer (it is sometimes spelled "REST", or "RESTful"). It relies on a stateless, client-server, cacheable communications protocol -- and in virtually all cases, the HTTP protocol is used (although this is not a requirement). REST is an architecture style for designing networked applications.
 
