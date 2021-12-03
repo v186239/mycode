@@ -1,0 +1,2 @@
+
+curl -H "Authorization: token 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" https://api.github.com/rate_limit
