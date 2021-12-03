@@ -2,6 +2,9 @@
 Instructor Chad's GITHUB page
 https://github.com/csfeeser/Python/tree/master/pyapi
 
+Alta3 Documentation and Learning Dashboard
+https://live.alta3.com/groups/psychotic-rhinoceroses-babbled/dashboard
+
 Python3 Cheat Sheet
 https://static1.squarespace.com/static/5df3d8c5d2be5962e4f87890/t/5e571dddd241b63a4237e0bf/1582767581265/python3.pdf
 
@@ -96,3 +99,5 @@ https://github.com/swagger-api
 Alta3 Documentation and Learning Dashboard
 https://live.alta3.com/groups/psychotic-rhinoceroses-babbled/dashboard
 
+Uploading files Flash:
+https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
